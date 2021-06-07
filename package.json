@@ -1,14 +1,22 @@
 {
-  "name": "deep-diff",
-  "description": "Javascript utility for calculating deep difference, capturing changes, and applying changes across objects; for nodejs and the browser.",
+  "name": "@bluelovers/deep-diff",
   "version": "1.0.2",
-  "license": "MIT",
+  "description": "Javascript utility for calculating deep difference, capturing changes, and applying changes across objects; for nodejs and the browser.",
   "keywords": [
     "diff",
     "difference",
     "compare",
     "change-tracking"
   ],
+  "homepage": "https://github.com/bluelovers/deep-diff#readme",
+  "bugs": {
+    "url": "https://github.com/bluelovers/deep-diff/issues"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/bluelovers/deep-diff.git"
+  },
+  "license": "MIT",
   "author": "Phillip Clark <phillip@flitbit.com>",
   "contributors": [
     "Simen Bekkhus <sbekkhus91@gmail.com>",
@@ -38,37 +46,54 @@
     "caasi Huang <caasi.igd@gmail.com>",
     "Tom Ashworth <tashworth@twitter.com>"
   ],
-  "repository": {
-    "type": "git",
-    "url": "git://github.com/flitbit/diff.git"
+  "main": "dist/index.js",
+  "module": "dist/index.esm.js",
+  "types": "dist/index.d.ts",
+  "typings": "dist/index.d.ts",
+  "directories": {
+    "example": "examples",
+    "test": "test"
   },
-  "main": "./index.js",
   "scripts": {
-    "prerelease": "npm run clean && npm run test",
-    "release": "uglifyjs -c -m -o dist/deep-diff.min.js --source-map -r '$,require,exports,self,module,define,navigator' index.js",
-    "clean": "rimraf dist && mkdir dist",
-    "preversion": "npm run release",
-    "postversion": "git push && git push --tags",
-    "pretest": "npm run lint",
-    "test": "mocha test/**/*.js",
-    "test:watch": "nodemon --ext js,json --ignore dist/ --exec 'npm test'",
+    "start": "tsdx watch",
+    "test": "tsdx test",
+    "build": "tsdx build --target node --name index",
+    "postbuild": "yarn run test",
     "preci": "npm run lint",
     "ci": "mocha --reporter mocha-junit-reporter test/**/*.js",
-    "lint": "eslint index.js test"
+    "npm:publish": "npm publish",
+    "npm:publish:lerna": "lerna publish --yes --bump patch",
+    "preversion": "npm run build",
+    "postversion": "git push && git push --tags",
+    "prepublishOnly_": "yarn run prepublishOnly:check-bin && yarn run prepublishOnly:update && yarn run test",
+    "prepublishOnly:check-bin": "ynpx --quiet @yarn-tool/check-pkg-bin",
+    "prepublishOnly:update": "yarn run ncu && yarn run sort-package-json",
+    "postpublish": "yarn run postpublish:changelog && yarn run postpublish:git:commit && yarn run postpublish:git:tag && yarn run postpublish:git:push",
+    "postpublish:changelog": "ynpx --quiet @yarn-tool/changelog && git add ./CHANGELOG.md",
+    "postpublish:git:commit": "git commit -m \"chore(release): publish\" . & echo postpublish:git:commit",
+    "postpublish:git:push": "git push --follow-tags",
+    "postpublish:git:tag": "ynpx --quiet @yarn-tool/tag",
+    "ncu": "yarn-tool ncu -u",
+    "sort-package-json": "yarn-tool sort"
   },
   "devDependencies": {
-    "bluebird": "^3.5.1",
-    "deep-equal": "^1.0.1",
-    "eslint": "^4.19.1",
-    "eslint-plugin-mocha": "^5.0.0",
+    "@alexjeffburke/deep-diff": "alexjeffburke/diff#alexjeffburke",
+    "@bluelovers/tsconfig": "^1.0.21",
+    "@flitbit/deep-diff": "npm:deep-diff@1.0.2",
+    "@flitbit/deep-diff-master": "flitbit/diff",
+    "@types/bluebird": "^3.5.35",
+    "@types/deep-diff": "^1.0.0",
+    "@types/deep-equal": "^1.0.1",
+    "@types/jest": "^26.0.23",
+    "@types/lodash": "^4.14.170",
+    "bluebird": "^3.7.2",
+    "deep-equal": "^2.0.5",
     "expect.js": "^0.3.1",
-    "json": "^9.0.6",
+    "jest": "^27.0.4",
     "json-ptr": "^1.1.0",
-    "lodash": "^4.17.10",
-    "mocha": "^5.1.1",
-    "mocha-junit-reporter": "^1.17.0",
-    "nodemon": "^1.17.4",
-    "rimraf": "^2.6.2",
-    "uglify-js": "^3.3.25"
+    "lodash": "^4.17.21"
+  },
+  "publishConfig": {
+    "access": "public"
   }
 }

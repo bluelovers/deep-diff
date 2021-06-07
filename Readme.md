@@ -1,15 +1,11 @@
 # deep-diff
 
-[![CircleCI](https://circleci.com/gh/flitbit/diff.svg?style=svg)](https://circleci.com/gh/flitbit/diff)
-
-[![NPM](https://nodei.co/npm/deep-diff.png?downloads=true&downloadRank=true&stars=true)](https://nodei.co/npm/deep-diff/)
-
 **deep-diff** is a javascript/node.js module providing utility functions for determining the structural differences between objects and includes some utilities for applying differences across objects.
 
 ## Install
 
 ```bash
-npm install deep-diff
+npm install @bluelovers/deep-diff
 ```
 
 Possible v1.0.0 incompatabilities:
@@ -27,7 +23,7 @@ Possible v1.0.0 incompatabilities:
 ## Installation
 
 ```bash
-npm install deep-diff
+npm install @bluelovers/deep-diff
 ```
 
 ### Importing
@@ -35,7 +31,7 @@ npm install deep-diff
 #### nodejs
 
 ```javascript
-var diff = require('deep-diff')
+var diff = require('@bluelovers/deep-diff').diff
 // or:
 // const diff = require('deep-diff');
 // const { diff } = require('deep-diff');
@@ -63,7 +59,7 @@ var diff = require('deep-diff')
 In order to describe differences, change revolves around an `origin` object. For consistency, the `origin` object is always the operand on the `left-hand-side` of operations. The `comparand`, which may contain changes, is always on the `right-hand-side` of operations.
 
 ``` javascript
-var diff = require('deep-diff').diff;
+var diff = require('@bluelovers/deep-diff').diff;
 
 var lhs = {
   name: 'my object',
@@ -203,7 +199,7 @@ if (changes) {
 The `prefilter`'s signature should be `function(path, key)` and it should return a truthy value for any `path`-`key` combination that should be filtered. If filtered, the difference analysis does no further analysis of on the identified object-property path.
 
 ```javascript
-const diff = require('deep-diff');
+const diff = require('@bluelovers/deep-diff').diff;
 const assert = require('assert');
 
 const data = {
@@ -236,7 +232,7 @@ assert.ok(typeof none === 'undefined', 'should reflect no differences');
 The `normalize`'s signature should be `function(path, key, lhs, rhs)` and it should return either a falsy value if no normalization has occured, or a `[lhs, rhs]` array to replace the original values. This step doesn't occur if the path was filtered out in the `prefilter` phase.
 
 ```javascript
-const diff = require('deep-diff');
+const diff = require('@bluelovers/deep-diff').diff;
 const assert = require('assert');
 
 const data = {
