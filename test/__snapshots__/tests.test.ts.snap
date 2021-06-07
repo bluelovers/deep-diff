@@ -1,0 +1,1422 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[` 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": "Phase2",
+    "path": Array [
+      "phases",
+      1,
+      "id",
+    ],
+    "rhs": "Phase1",
+  },
+  DiffArray {
+    "index": 1,
+    "item": DiffNew {
+      "kind": "N",
+      "rhs": Object {
+        "id": "Task2",
+      },
+    },
+    "kind": "A",
+    "path": Array [
+      "phases",
+      1,
+      "tasks",
+    ],
+  },
+  DiffEdit {
+    "kind": "E",
+    "lhs": "Task3",
+    "path": Array [
+      "phases",
+      1,
+      "tasks",
+      0,
+      "id",
+    ],
+    "rhs": "Task1",
+  },
+  DiffEdit {
+    "kind": "E",
+    "lhs": "Phase1",
+    "path": Array [
+      "phases",
+      0,
+      "id",
+    ],
+    "rhs": "Phase2",
+  },
+  DiffArray {
+    "index": 1,
+    "item": DiffDeleted {
+      "kind": "D",
+      "lhs": Object {
+        "id": "Task2",
+      },
+    },
+    "kind": "A",
+    "path": Array [
+      "phases",
+      0,
+      "tasks",
+    ],
+  },
+  DiffEdit {
+    "kind": "E",
+    "lhs": "Task1",
+    "path": Array [
+      "phases",
+      0,
+      "tasks",
+      0,
+      "id",
+    ],
+    "rhs": "Task3",
+  },
+]
+`;
+
+exports[` 2`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": "bar",
+    "path": Array [
+      "foo",
+    ],
+    "rhs": "baz",
+  },
+  DiffDeleted {
+    "kind": "D",
+    "lhs": "Iterator",
+    "path": Array [
+      Symbol(Symbol.iterator),
+    ],
+  },
+]
+`;
+
+exports[`deep-diff A target that has a NaN shows the property is changed when compared to another number 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": NaN,
+    "path": Array [
+      "key",
+    ],
+    "rhs": 0,
+  },
+]
+`;
+
+exports[`deep-diff A target that has a date value shows the property is changed with a new date value 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": 1987-08-10T00:59:15.555Z,
+    "path": Array [
+      "key",
+    ],
+    "rhs": 1994-08-25T01:22:57.777Z,
+  },
+]
+`;
+
+exports[`deep-diff A target that has nested values shows the property as added when compared to an empty object on left 1`] = `
+Array [
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "noChange",
+    ],
+    "rhs": "same",
+  },
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "levelOne",
+    ],
+    "rhs": Object {
+      "levelTwo": "value",
+    },
+  },
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "arrayOne",
+    ],
+    "rhs": Array [
+      Object {
+        "objValue": "value",
+      },
+    ],
+  },
+]
+`;
+
+exports[`deep-diff A target that has nested values shows the property as removed when compared to an empty object 1`] = `
+Array [
+  DiffDeleted {
+    "kind": "D",
+    "lhs": "same",
+    "path": Array [
+      "noChange",
+    ],
+  },
+  DiffDeleted {
+    "kind": "D",
+    "lhs": Object {
+      "levelTwo": "value",
+    },
+    "path": Array [
+      "levelOne",
+    ],
+  },
+  DiffDeleted {
+    "kind": "D",
+    "lhs": Array [
+      Object {
+        "objValue": "value",
+      },
+    ],
+    "path": Array [
+      "arrayOne",
+    ],
+  },
+]
+`;
+
+exports[`deep-diff A target that has nested values shows the property is changed when compared to an object that has value 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": "value",
+    "path": Array [
+      "levelOne",
+      "levelTwo",
+    ],
+    "rhs": "another value",
+  },
+  DiffArray {
+    "index": 1,
+    "item": DiffNew {
+      "kind": "N",
+      "rhs": Object {
+        "objValue": "more value",
+      },
+    },
+    "kind": "A",
+    "path": Array [
+      "arrayOne",
+    ],
+  },
+  DiffEdit {
+    "kind": "E",
+    "lhs": "value",
+    "path": Array [
+      "arrayOne",
+      0,
+      "objValue",
+    ],
+    "rhs": "new value",
+  },
+]
+`;
+
+exports[`deep-diff A target that has nested values when diff is applied to a different empty object has result with added array objects 1`] = `
+Object {
+  "nestedTwo": Object {
+    "arrayOne": Array [
+      Object {
+        "objValue": "new value",
+      },
+      Object {
+        "objValue": "more value",
+      },
+    ],
+    "levelOne": Object {
+      "levelTwo": "another value",
+    },
+    "noChange": "same",
+  },
+  "result": Object {
+    "arrayOne": Array [
+      ,
+      Object {
+        "objValue": "more value",
+      },
+    ],
+  },
+}
+`;
+
+exports[`deep-diff A target that has nested values when diff is applied to a different empty object has result with array object values 1`] = `
+Object {
+  "nestedTwo": Object {
+    "arrayOne": Array [
+      Object {
+        "objValue": "new value",
+      },
+      Object {
+        "objValue": "more value",
+      },
+    ],
+    "levelOne": Object {
+      "levelTwo": "another value",
+    },
+    "noChange": "same",
+  },
+  "result": Object {
+    "arrayOne": Array [
+      Object {
+        "objValue": "new value",
+      },
+    ],
+  },
+}
+`;
+
+exports[`deep-diff A target that has nested values when diff is applied to a different empty object has result with nested values 1`] = `
+Object {
+  "nestedTwo": Object {
+    "arrayOne": Array [
+      Object {
+        "objValue": "new value",
+      },
+      Object {
+        "objValue": "more value",
+      },
+    ],
+    "levelOne": Object {
+      "levelTwo": "another value",
+    },
+    "noChange": "same",
+  },
+  "result": Object {
+    "levelOne": Object {
+      "levelTwo": "another value",
+    },
+  },
+}
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing Math to a date 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {},
+    "path": Array [
+      "key",
+    ],
+    "rhs": 2021-06-07T18:11:55.233Z,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing Math to a null 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {},
+    "path": Array [
+      "key",
+    ],
+    "rhs": null,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing Math to a regexp literal 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {},
+    "path": Array [
+      "key",
+    ],
+    "rhs": /a/,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing Math to an array 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {},
+    "path": Array [
+      "key",
+    ],
+    "rhs": Array [],
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing Math to an object 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {},
+    "path": Array [
+      "key",
+    ],
+    "rhs": Object {},
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a date to Math 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": 2021-06-07T18:11:55.233Z,
+    "path": Array [
+      "key",
+    ],
+    "rhs": Object {},
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a date to a null 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": 2021-06-07T18:11:55.233Z,
+    "path": Array [
+      "key",
+    ],
+    "rhs": null,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a date to a regexp literal 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": 2021-06-07T18:11:55.233Z,
+    "path": Array [
+      "key",
+    ],
+    "rhs": /a/,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a date to an array 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": 2021-06-07T18:11:55.233Z,
+    "path": Array [
+      "key",
+    ],
+    "rhs": Array [],
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a date to an object 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": 2021-06-07T18:11:55.233Z,
+    "path": Array [
+      "key",
+    ],
+    "rhs": Object {},
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a null to Math 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": null,
+    "path": Array [
+      "key",
+    ],
+    "rhs": Object {},
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a null to a date 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": null,
+    "path": Array [
+      "key",
+    ],
+    "rhs": 2021-06-07T18:11:55.233Z,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a null to a regexp literal 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": null,
+    "path": Array [
+      "key",
+    ],
+    "rhs": /a/,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a null to an array 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": null,
+    "path": Array [
+      "key",
+    ],
+    "rhs": Array [],
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a null to an object 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": null,
+    "path": Array [
+      "key",
+    ],
+    "rhs": Object {},
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a regexp literal to Math 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": /a/,
+    "path": Array [
+      "key",
+    ],
+    "rhs": Object {},
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a regexp literal to a date 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": /a/,
+    "path": Array [
+      "key",
+    ],
+    "rhs": 2021-06-07T18:11:55.233Z,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a regexp literal to a null 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": /a/,
+    "path": Array [
+      "key",
+    ],
+    "rhs": null,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a regexp literal to an array 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": /a/,
+    "path": Array [
+      "key",
+    ],
+    "rhs": Array [],
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing a regexp literal to an object 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": /a/,
+    "path": Array [
+      "key",
+    ],
+    "rhs": Object {},
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing an array to Math 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Array [],
+    "path": Array [
+      "key",
+    ],
+    "rhs": Object {},
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing an array to a date 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Array [],
+    "path": Array [
+      "key",
+    ],
+    "rhs": 2021-06-07T18:11:55.233Z,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing an array to a null 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Array [],
+    "path": Array [
+      "key",
+    ],
+    "rhs": null,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing an array to a regexp literal 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Array [],
+    "path": Array [
+      "key",
+    ],
+    "rhs": /a/,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing an array to an object 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Array [],
+    "path": Array [
+      "key",
+    ],
+    "rhs": Object {},
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing an object to Math 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {},
+    "path": Array [
+      "key",
+    ],
+    "rhs": Object {},
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing an object to a date 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {},
+    "path": Array [
+      "key",
+    ],
+    "rhs": 2021-06-07T18:11:55.233Z,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing an object to a null 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {},
+    "path": Array [
+      "key",
+    ],
+    "rhs": null,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing an object to a regexp literal 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {},
+    "path": Array [
+      "key",
+    ],
+    "rhs": /a/,
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared to a different type of keyless object shows differences when comparing an object to an array 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {},
+    "path": Array [
+      "key",
+    ],
+    "rhs": Array [],
+  },
+]
+`;
+
+exports[`deep-diff A target that has no properties when compared with an object having other properties the differences are reported 1`] = `
+Array [
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "other",
+    ],
+    "rhs": "property",
+  },
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "another",
+    ],
+    "rhs": 13.13,
+  },
+]
+`;
+
+exports[`deep-diff A target that has null value shows that an object property is changed when it is set to null 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {
+      "nested": "value",
+    },
+    "path": Array [
+      "key",
+    ],
+    "rhs": null,
+  },
+]
+`;
+
+exports[`deep-diff A target that has null value shows the property as removed when compared to an empty object 1`] = `
+Array [
+  DiffDeleted {
+    "kind": "D",
+    "lhs": null,
+    "path": Array [
+      "key",
+    ],
+  },
+]
+`;
+
+exports[`deep-diff A target that has null value shows the property is changed when compared to an object that has value 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": null,
+    "path": Array [
+      "key",
+    ],
+    "rhs": "value",
+  },
+]
+`;
+
+exports[`deep-diff A target that has one property shows the property as edited when compared to an array 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Object {
+      "one": "property",
+    },
+    "rhs": Array [
+      "one",
+    ],
+  },
+]
+`;
+
+exports[`deep-diff A target that has one property shows the property as edited when compared to an object with null 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": "property",
+    "path": Array [
+      "one",
+    ],
+    "rhs": null,
+  },
+]
+`;
+
+exports[`deep-diff A target that has one property shows the property as removed when compared to an empty object 1`] = `
+Array [
+  DiffDeleted {
+    "kind": "D",
+    "lhs": "property",
+    "path": Array [
+      "one",
+    ],
+  },
+]
+`;
+
+exports[`deep-diff Can normalize properties to before diffing falsy return does not normalize 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": Array [
+      1,
+      2,
+      3,
+      4,
+      5,
+    ],
+    "path": Array [
+      "array",
+    ],
+    "rhs": "1/2/3/4/5",
+  },
+]
+`;
+
+exports[`deep-diff Can normalize properties to before diffing falsy return does not normalize 2`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": "1/2/3/4/5",
+    "path": Array [
+      "array",
+    ],
+    "rhs": Array [
+      1,
+      2,
+      3,
+      4,
+      5,
+    ],
+  },
+]
+`;
+
+exports[`deep-diff Comparing regexes should work can compare regex instances 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": "/foo/",
+    "rhs": "/foo/i",
+  },
+]
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should differentiate between arrays and objects 1`] = `
+Object {
+  "a": Array [
+    1,
+    true,
+    "1",
+  ],
+  "b": Object {
+    "a": 1,
+    "b": true,
+    "c": "1",
+  },
+  "hash_a": -288508759,
+  "hash_b": -613908085,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for boolean and object with boolean 1`] = `
+Object {
+  "a": true,
+  "b": Object {
+    "key": true,
+  },
+  "hash_a": 19690121,
+  "hash_b": -410014916,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different "simple" types 1`] = `
+Object {
+  "a": 1,
+  "b": -20,
+  "hash_a": 1955049373,
+  "hash_b": 1901580195,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different "simple" types 2`] = `
+Object {
+  "a": "foo",
+  "b": 45,
+  "hash_a": 1193487408,
+  "hash_b": 476990155,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different "simple" types 3`] = `
+Object {
+  "a": "pie",
+  "b": "something else",
+  "hash_a": 1193779242,
+  "hash_b": -1934843483,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different "simple" types 4`] = `
+Object {
+  "a": 1.3332,
+  "b": 1,
+  "hash_a": -1500944176,
+  "hash_b": 1955049373,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different "simple" types 5`] = `
+Object {
+  "a": 1,
+  "b": null,
+  "hash_a": 1955049373,
+  "hash_b": 933347719,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different "simple" types 6`] = `
+Object {
+  "a": "this is kind of a long string, don't you think?",
+  "b": "the quick brown fox jumped over the lazy doge",
+  "hash_a": 1457215487,
+  "hash_b": 1772506054,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different "simple" types 7`] = `
+Object {
+  "a": true,
+  "b": 2,
+  "hash_a": 19690121,
+  "hash_b": 1955049404,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different "simple" types 8`] = `
+Object {
+  "a": false,
+  "b": "flooog",
+  "hash_a": 193631456,
+  "hash_b": 1358854182,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different arrays 1`] = `
+Object {
+  "a": Array [
+    1,
+    2,
+    3,
+  ],
+  "b": Array [
+    1,
+    2,
+  ],
+  "hash_a": 5392754973,
+  "hash_b": 2119145045,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different arrays 2`] = `
+Object {
+  "a": Array [
+    1,
+    4,
+    5,
+    6,
+  ],
+  "b": Array [
+    "foo",
+    1,
+    true,
+    undefined,
+  ],
+  "hash_a": 6707041227,
+  "hash_b": 1170781269,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different arrays 3`] = `
+Object {
+  "a": Array [
+    1,
+    4,
+    6,
+  ],
+  "b": Array [
+    1,
+    4,
+    7,
+  ],
+  "hash_a": 5392789879,
+  "hash_b": 5392792824,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different arrays 4`] = `
+Object {
+  "a": Array [
+    1,
+    3,
+    5,
+  ],
+  "b": Array [
+    "1",
+    "3",
+    "5",
+  ],
+  "hash_a": 5392783989,
+  "hash_b": -6009112427,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different objects 1`] = `
+Object {
+  "a": Object {
+    "key": "value",
+  },
+  "b": Object {
+    "other": "value",
+  },
+  "hash_a": 1960786541,
+  "hash_b": 1006916316,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for different objects 2`] = `
+Object {
+  "a": Object {
+    "a": Object {
+      "b": "c",
+    },
+  },
+  "b": Object {
+    "a": "b",
+  },
+  "hash_a": 73015553,
+  "hash_b": -1777991171,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for number and array 1`] = `
+Object {
+  "a": 1,
+  "b": Array [
+    1,
+  ],
+  "hash_a": 1955049373,
+  "hash_b": 804923364,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for string and array of string 1`] = `
+Object {
+  "a": "string",
+  "b": Array [
+    "string",
+  ],
+  "hash_a": 243124211,
+  "hash_b": 2068194484,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order indepdendent hash function should give different values for different objects should give different values for string and object with string 1`] = `
+Object {
+  "a": "some string",
+  "b": Object {
+    "key": "some string",
+  },
+  "hash_a": -1382140391,
+  "hash_b": -1545173620,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should be order independent should not care about array order 1`] = `
+Object {
+  "a": Array [
+    1,
+    2,
+    3,
+  ],
+  "hash": 5392754973,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should be order independent should not care about array order 2`] = `
+Object {
+  "a": Array [
+    "hi",
+    true,
+    9.4,
+  ],
+  "hash": -1150555108,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should be order independent should not care about key order in an object 1`] = `
+Object {
+  "a": Object {
+    "foo": "bar",
+    "foz": "baz",
+  },
+  "hash": 1368370518,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should be order independent should work with complicated objects 1`] = `
+Object {
+  "a": Object {
+    "faz": Array [
+      1,
+      "pie",
+      Object {
+        "food": "yum",
+      },
+    ],
+    "foo": "bar",
+  },
+  "hash": 213954180,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work in funky javascript cases 1`] = `
+Object {
+  "a": undefined,
+  "b": null,
+  "hash_a": -1618143813,
+  "hash_b": 933347719,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work in funky javascript cases 2`] = `
+Object {
+  "a": 0,
+  "b": undefined,
+  "hash_a": 1955049342,
+  "hash_b": -1618143813,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work in funky javascript cases 3`] = `
+Object {
+  "a": 0,
+  "b": null,
+  "hash_a": 1955049342,
+  "hash_b": 933347719,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work in funky javascript cases 4`] = `
+Object {
+  "a": 0,
+  "b": false,
+  "hash_a": 1955049342,
+  "hash_b": 193631456,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work in funky javascript cases 5`] = `
+Object {
+  "a": 0,
+  "b": Array [],
+  "hash_a": 1955049342,
+  "hash_b": 450608321,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work in funky javascript cases 6`] = `
+Object {
+  "a": "",
+  "b": Array [],
+  "hash_a": 1043830564,
+  "hash_b": 450608321,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work in funky javascript cases 7`] = `
+Object {
+  "a": 3.22,
+  "b": "3.22",
+  "hash_a": -1175133455,
+  "hash_b": -1705691863,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work in funky javascript cases 8`] = `
+Object {
+  "a": true,
+  "b": "true",
+  "hash_a": 19690121,
+  "hash_b": -1643571242,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work in funky javascript cases 9`] = `
+Object {
+  "a": false,
+  "b": 0,
+  "hash_a": 193631456,
+  "hash_b": 1955049342,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work on empty array and array with 0 1`] = `
+Object {
+  "a": Array [],
+  "b": Array [
+    0,
+  ],
+  "hash_a": 450608321,
+  "hash_b": 804920419,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work on empty array and object 1`] = `
+Object {
+  "a": Array [],
+  "b": Object {},
+  "hash_a": 450608321,
+  "hash_b": 0,
+}
+`;
+
+exports[`deep-diff Order independent hash testing Order independent hash function should work in pathological cases should work on empty object and undefined 1`] = `
+Object {
+  "a": Object {},
+  "b": undefined,
+  "hash_a": 0,
+  "hash_b": -1618143813,
+}
+`;
+
+exports[`deep-diff When filtering keys if the filtered config is passed as an object changes to the array to not appear as a difference 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": "open",
+    "path": Array [
+      "status",
+    ],
+    "rhs": "closed",
+  },
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "fixedBy",
+    ],
+    "rhs": "flitbit",
+  },
+]
+`;
+
+exports[`deep-diff When filtering keys if the filtered property is an array changes to the array do not appear as a difference 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": "open",
+    "path": Array [
+      "status",
+    ],
+    "rhs": "closed",
+  },
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "fixedBy",
+    ],
+    "rhs": "flitbit",
+  },
+]
+`;
+
+exports[`deep-diff When filtering keys if the filtered property is not an array changes do not appear as a difference 1`] = `
+Array [
+  DiffArray {
+    "index": 3,
+    "item": DiffNew {
+      "kind": "N",
+      "rhs": "ergdev",
+    },
+    "kind": "A",
+    "path": Array [
+      "supportedBy",
+    ],
+  },
+  DiffArray {
+    "index": 2,
+    "item": DiffNew {
+      "kind": "N",
+      "rhs": "flitbit",
+    },
+    "kind": "A",
+    "path": Array [
+      "supportedBy",
+    ],
+  },
+  DiffArray {
+    "index": 1,
+    "item": DiffNew {
+      "kind": "N",
+      "rhs": "TylerGarlick",
+    },
+    "kind": "A",
+    "path": Array [
+      "supportedBy",
+    ],
+  },
+  DiffEdit {
+    "kind": "E",
+    "lhs": "open",
+    "path": Array [
+      "status",
+    ],
+    "rhs": "closed",
+  },
+]
+`;
+
+exports[`deep-diff regression test for bug #10,  differences in nested arrays are detected differences can be applied and the result equals the rhs 1`] = `
+Object {
+  "id": "Release",
+  "phases": Array [
+    Object {
+      "id": "Phase2",
+      "tasks": Array [
+        Object {
+          "id": "Task3",
+        },
+      ],
+    },
+    Object {
+      "id": "Phase1",
+      "tasks": Array [
+        Object {
+          "id": "Task1",
+        },
+        Object {
+          "id": "Task2",
+        },
+      ],
+    },
+  ],
+}
+`;
+
+exports[`deep-diff regression test for bug #35 can apply diffs between two top level arrays 1`] = `
+Array [
+  DiffArray {
+    "index": 2,
+    "item": DiffDeleted {
+      "kind": "D",
+      "lhs": "a",
+    },
+    "kind": "A",
+  },
+  DiffArray {
+    "index": 1,
+    "item": DiffDeleted {
+      "kind": "D",
+      "lhs": "a",
+    },
+    "kind": "A",
+  },
+]
+`;
+
+exports[`deep-diff regression test for issue #70 should detect a difference with undefined property on lhs 1`] = `
+Array [
+  DiffDeleted {
+    "kind": "D",
+    "lhs": undefined,
+    "path": Array [
+      "foo",
+    ],
+  },
+]
+`;
+
+exports[`deep-diff regression test for issue #70 should detect a difference with undefined property on rhs 1`] = `
+Array [
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "foo",
+    ],
+    "rhs": undefined,
+  },
+]
+`;
+
+exports[`deep-diff regression tests for issue #102 should not throw a TypeError 1`] = `
+Array [
+  DiffDeleted {
+    "kind": "D",
+    "lhs": null,
+  },
+]
+`;
+
+exports[`deep-diff regression tests for issue #102 should not throw a TypeError 2`] = `
+Array [
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "foo",
+    ],
+    "rhs": undefined,
+  },
+]
+`;
+
+exports[`deep-diff subject.toString is not a function should not throw a TypeError 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": "yes",
+    "path": Array [
+      "left",
+    ],
+    "rhs": Object {
+      "toString": true,
+    },
+  },
+]
+`;

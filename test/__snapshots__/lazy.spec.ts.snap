@@ -1,0 +1,152 @@
+// Jest Snapshot v1, https://goo.gl/fbAQLP
+
+exports[`lazy check {
+  id: 'Release',
+  phases: [
+    { id: 'Phase1', tasks: [ { id: 'Task1' }, { id: 'Task2' } ] },
+    { id: 'Phase2', tasks: [ { id: 'Task3' } ] }
+  ]
+} <-> {
+  id: 'Release',
+  phases: [
+    { id: 'Phase2', tasks: [ { id: 'Task3' } ] },
+    { id: 'Phase1', tasks: [ { id: 'Task1' }, { id: 'Task2' } ] }
+  ]
+} toMatchSnapshot 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": "Phase2",
+    "path": Array [
+      "phases",
+      1,
+      "id",
+    ],
+    "rhs": "Phase1",
+  },
+  DiffArray {
+    "index": 1,
+    "item": DiffNew {
+      "kind": "N",
+      "rhs": Object {
+        "id": "Task2",
+      },
+    },
+    "kind": "A",
+    "path": Array [
+      "phases",
+      1,
+      "tasks",
+    ],
+  },
+  DiffEdit {
+    "kind": "E",
+    "lhs": "Task3",
+    "path": Array [
+      "phases",
+      1,
+      "tasks",
+      0,
+      "id",
+    ],
+    "rhs": "Task1",
+  },
+  DiffEdit {
+    "kind": "E",
+    "lhs": "Phase1",
+    "path": Array [
+      "phases",
+      0,
+      "id",
+    ],
+    "rhs": "Phase2",
+  },
+  DiffArray {
+    "index": 1,
+    "item": DiffDeleted {
+      "kind": "D",
+      "lhs": Object {
+        "id": "Task2",
+      },
+    },
+    "kind": "A",
+    "path": Array [
+      "phases",
+      0,
+      "tasks",
+    ],
+  },
+  DiffEdit {
+    "kind": "E",
+    "lhs": "Task1",
+    "path": Array [
+      "phases",
+      0,
+      "tasks",
+      0,
+      "id",
+    ],
+    "rhs": "Task3",
+  },
+]
+`;
+
+exports[`lazy check { foo: [ 1, 2, 3, 5 ] } <-> { foo: [ 1, 2, 4, 5 ] } toMatchSnapshot 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": 3,
+    "path": Array [
+      "foo",
+      2,
+    ],
+    "rhs": 4,
+  },
+]
+`;
+
+exports[`lazy check { foo: { '1': 1, '2': 1, '3': 1, '5': 1 } } <-> { foo: { '0': 1, '1': 0, '2': 1, '4': 1 } } toMatchSnapshot 1`] = `
+Array [
+  DiffEdit {
+    "kind": "E",
+    "lhs": 1,
+    "path": Array [
+      "foo",
+      "1",
+    ],
+    "rhs": 0,
+  },
+  DiffDeleted {
+    "kind": "D",
+    "lhs": 1,
+    "path": Array [
+      "foo",
+      "3",
+    ],
+  },
+  DiffDeleted {
+    "kind": "D",
+    "lhs": 1,
+    "path": Array [
+      "foo",
+      "5",
+    ],
+  },
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "foo",
+      "0",
+    ],
+    "rhs": 1,
+  },
+  DiffNew {
+    "kind": "N",
+    "path": Array [
+      "foo",
+      "4",
+    ],
+    "rhs": 1,
+  },
+]
+`;
