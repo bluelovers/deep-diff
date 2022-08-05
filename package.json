@@ -1,6 +1,6 @@
 {
   "name": "@bluelovers/deep-diff",
-  "version": "1.0.2",
+  "version": "1.0.3",
   "description": "Javascript utility for calculating deep difference, capturing changes, and applying changes across objects; for nodejs and the browser.",
   "keywords": [
     "diff",

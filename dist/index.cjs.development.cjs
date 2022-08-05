@@ -156,7 +156,7 @@ function _deepDiff(lhs, rhs, changes, prefilter, path, key, stack, orderIndepend
         }
 
         if (prefilter.normalize) {
-          var alt = prefilter.normalize(currentPath, key, lhs, rhs);
+          const alt = prefilter.normalize(currentPath, key, lhs, rhs);
 
           if (alt) {
             lhs = alt[0];
@@ -227,8 +227,8 @@ function _deepDiff(lhs, rhs, changes, prefilter, path, key, stack, orderIndepend
           _deepDiff(lhs[i], rhs[i], changes, prefilter, currentPath, i, stack, orderIndependent);
         }
       } else {
-        var akeys = Object.keys(lhs).concat(Object.getOwnPropertySymbols(lhs));
-        var pkeys = Object.keys(rhs).concat(Object.getOwnPropertySymbols(rhs));
+        const akeys = Object.keys(lhs).concat(Object.getOwnPropertySymbols(lhs));
+        const pkeys = Object.keys(rhs).concat(Object.getOwnPropertySymbols(rhs));
 
         for (i = 0; i < akeys.length; ++i) {
           k = akeys[i];

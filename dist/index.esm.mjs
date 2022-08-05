@@ -102,23 +102,23 @@ function _deepDiff(e, t, n, r, i, f, a, s) {
       if ("object" == typeof r) {
         if (r.prefilter && r.prefilter(h, f)) return;
         if (r.normalize) {
-          var l = r.normalize(h, f, e, t);
-          l && (e = l[0], t = l[1]);
+          const n = r.normalize(h, f, e, t);
+          n && (e = n[0], t = n[1]);
         }
       }
     }
     h.push(f);
   }
   "regexp" === realTypeOf(e) && "regexp" === realTypeOf(t) && (e = e.toString(), t = t.toString());
-  const o = typeof e, p = typeof t;
-  let c, d, u, D;
-  const g = "undefined" !== o || a && a.length > 0 && a[a.length - 1].lhs && Object.getOwnPropertyDescriptor(a[a.length - 1].lhs, f), y = "undefined" !== p || a && a.length > 0 && a[a.length - 1].rhs && Object.getOwnPropertyDescriptor(a[a.length - 1].rhs, f);
-  if (!g && y) n.push(new DiffNew(h, t)); else if (!y && g) n.push(new DiffDeleted(h, e)); else if (realTypeOf(e) !== realTypeOf(t)) n.push(new DiffEdit(h, e, t)); else if ("date" === realTypeOf(e) && e - t != 0) n.push(new DiffEdit(h, e, t)); else if ("object" === o && null !== e && null !== t) {
-    for (c = a.length - 1; c > -1; --c) if (a[c].lhs === e) {
-      D = !0;
+  const o = typeof e, l = typeof t;
+  let p, c, d, u;
+  const D = "undefined" !== o || a && a.length > 0 && a[a.length - 1].lhs && Object.getOwnPropertyDescriptor(a[a.length - 1].lhs, f), g = "undefined" !== l || a && a.length > 0 && a[a.length - 1].rhs && Object.getOwnPropertyDescriptor(a[a.length - 1].rhs, f);
+  if (!D && g) n.push(new DiffNew(h, t)); else if (!g && D) n.push(new DiffDeleted(h, e)); else if (realTypeOf(e) !== realTypeOf(t)) n.push(new DiffEdit(h, e, t)); else if ("date" === realTypeOf(e) && e - t != 0) n.push(new DiffEdit(h, e, t)); else if ("object" === o && null !== e && null !== t) {
+    for (p = a.length - 1; p > -1; --p) if (a[p].lhs === e) {
+      u = !0;
       break;
     }
-    if (D) e !== t && n.push(new DiffEdit(h, e, t)); else {
+    if (u) e !== t && n.push(new DiffEdit(h, e, t)); else {
       if (a.push({
         lhs: e,
         rhs: t
@@ -127,14 +127,14 @@ function _deepDiff(e, t, n, r, i, f, a, s) {
           return getOrderIndependentHash(e) - getOrderIndependentHash(t);
         })), t.sort((function(e, t) {
           return getOrderIndependentHash(e) - getOrderIndependentHash(t);
-        }))), c = t.length - 1, d = e.length - 1; c > d; ) n.push(new DiffArray(h, c, new DiffNew(void 0, t[c--])));
-        for (;d > c; ) n.push(new DiffArray(h, d, new DiffDeleted(void 0, e[d--])));
-        for (;c >= 0; --c) _deepDiff(e[c], t[c], n, r, h, c, a, s);
+        }))), p = t.length - 1, c = e.length - 1; p > c; ) n.push(new DiffArray(h, p, new DiffNew(void 0, t[p--])));
+        for (;c > p; ) n.push(new DiffArray(h, c, new DiffDeleted(void 0, e[c--])));
+        for (;p >= 0; --p) _deepDiff(e[p], t[p], n, r, h, p, a, s);
       } else {
-        var b = Object.keys(e).concat(Object.getOwnPropertySymbols(e)), v = Object.keys(t).concat(Object.getOwnPropertySymbols(t));
-        for (c = 0; c < b.length; ++c) u = b[c], D = v.indexOf(u), D >= 0 ? (_deepDiff(e[u], t[u], n, r, h, u, a, s), 
-        v[D] = null) : _deepDiff(e[u], void 0, n, r, h, u, a, s);
-        for (c = 0; c < v.length; ++c) u = v[c], u && _deepDiff(void 0, t[u], n, r, h, u, a, s);
+        const i = Object.keys(e).concat(Object.getOwnPropertySymbols(e)), f = Object.keys(t).concat(Object.getOwnPropertySymbols(t));
+        for (p = 0; p < i.length; ++p) d = i[p], u = f.indexOf(d), u >= 0 ? (_deepDiff(e[d], t[d], n, r, h, d, a, s), 
+        f[u] = null) : _deepDiff(e[d], void 0, n, r, h, d, a, s);
+        for (p = 0; p < f.length; ++p) d = f[p], d && _deepDiff(void 0, t[d], n, r, h, d, a, s);
       }
       a.length = a.length - 1;
     }
