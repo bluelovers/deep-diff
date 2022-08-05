@@ -1,96 +1,52 @@
-// @ts-nocheck
-var EnumKinds;
+'use strict';
+
+Object.defineProperty(exports, '__esModule', { value: true });
+
+exports.EnumKinds = void 0;
 
 (function (EnumKinds) {
-  /**
-   * Item was edited
-   */
   EnumKinds["DiffEdit"] = "E";
-  /**
-   * Item is new
-   */
-
   EnumKinds["DiffNew"] = "N";
-  /**
-   * Item was edited
-   */
-
   EnumKinds["DiffDeleted"] = "D";
-  /**
-   * Array was modified
-   */
-
   EnumKinds["DiffArray"] = "A";
-})(EnumKinds || (EnumKinds = {}));
+})(exports.EnumKinds || (exports.EnumKinds = {}));
 
-const validKinds = ["N"
-/* DiffNew */
-, "E"
-/* DiffEdit */
-, "A"
-/* DiffArray */
-, "D"
-/* DiffDeleted */
-];
+const validKinds = ["N", "E", "A", "D"];
 class Diff {
   constructor(kind, path) {
     this.kind = kind;
 
-    if (path != null && path.length) {
+    if (path !== null && path !== void 0 && path.length) {
       this.path = path;
     }
   }
 
 }
-/**
- * Item was edited
- */
-
 class DiffEdit extends Diff {
   constructor(path, lhs, rhs) {
-    super("E"
-    /* DiffEdit */
-    , path);
+    super("E", path);
     this.lhs = lhs;
     this.rhs = rhs;
   }
 
 }
-/**
- * Item is new
- */
-
 class DiffNew extends Diff {
   constructor(path, rhs) {
-    super("N"
-    /* DiffNew */
-    , path);
+    super("N", path);
     this.rhs = rhs;
   }
 
 }
-/**
- * Item was edited
- */
-
 class DiffDeleted extends Diff {
   constructor(path, lhs) {
-    super("D"
-    /* DiffDeleted */
-    , path);
+    super("D", path);
     this.lhs = lhs;
   }
 
 }
-/**
- * Array was modified
- */
-
 class DiffArray extends Diff {
   constructor(path, index, item) {
-    super("A"
-    /* DiffArray */
-    , path);
+    super("A", path);
     this.index = index;
     this.item = item;
   }
@@ -98,10 +54,7 @@ class DiffArray extends Diff {
 }
 
 function arrayRemove(arr, from) {
-  return arr.splice(from, 1); //	const rest = arr.slice((to || from) + 1 || arr.length);
-  //	arr.length = from < 0 ? arr.length + from : from;
-  //	arr.push.apply(arr, rest);
-  //	return arr;
+  return arr.splice(from, 1);
 }
 
 function realTypeOf(subject) {
@@ -125,10 +78,6 @@ function realTypeOf(subject) {
 
   return 'object';
 }
-/**
- * @see http://werxltd.com/wp/2010/05/13/javascript-implementation-of-javas-string-hashcode-method/
- */
-
 
 function hashThisString(string) {
   let hash = 0;
@@ -140,16 +89,11 @@ function hashThisString(string) {
   for (let i = 0; i < string.length; i++) {
     const char = string.charCodeAt(i);
     hash = (hash << 5) - hash + char;
-    hash = hash & hash; // Convert to 32bit integer
+    hash = hash & hash;
   }
 
   return hash;
 }
-/**
- * Gets a hash of the given object in an array order-independent fashion
- * also object key order independent (easier since they can be alphabetized)
- */
-
 
 function getOrderIndependentHash(object) {
   let accum = 0;
@@ -157,7 +101,6 @@ function getOrderIndependentHash(object) {
 
   if (type === 'array') {
     object.forEach(function (item) {
-      // Addition is commutative so this is order indep
       accum += getOrderIndependentHash(item);
     });
     const arrayString = normalizeHashDesc(type, {
@@ -176,8 +119,7 @@ function getOrderIndependentHash(object) {
     }
 
     return accum;
-  } // Non object, non array...should be good?
-
+  }
 
   const stringToHash = normalizeHashDesc(type, {
     value: object
@@ -225,8 +167,7 @@ function _deepDiff(lhs, rhs, changes, prefilter, path, key, stack, orderIndepend
     }
 
     currentPath.push(key);
-  } // Use string comparison for regexes
-
+  }
 
   if (realTypeOf(lhs) === 'regexp' && realTypeOf(rhs) === 'regexp') {
     lhs = lhs.toString();
@@ -262,7 +203,6 @@ function _deepDiff(lhs, rhs, changes, prefilter, path, key, stack, orderIndepend
       });
 
       if (Array.isArray(lhs)) {
-        // If order doesn't matter, we need to sort our arrays
         if (orderIndependent) {
           lhs.sort(function (a, b) {
             return getOrderIndependentHash(a) - getOrderIndependentHash(b);
@@ -314,7 +254,6 @@ function _deepDiff(lhs, rhs, changes, prefilter, path, key, stack, orderIndepend
 
       stack.length = stack.length - 1;
     } else if (lhs !== rhs) {
-      // lhs is contains a cycle at this element and it differs from rhs
       changes.push(new DiffEdit(currentPath, lhs, rhs));
     }
   } else if (lhs !== rhs) {
@@ -372,15 +311,7 @@ function _traversalObject(target, path) {
 function _applyArrayChange(arr, index, change) {
   var _change$path;
 
-  if ((_change$path = change.path) != null && _change$path.length) {
-    //		let it = arr[index],
-    //			i, u = change.path.length - 1;
-    //		for (i = 0; i < u; i++)
-    //		{
-    //			it = it[change.path[i]];
-    //		}
-    //
-    //		let key = change.path[i];
+  if ((_change$path = change.path) !== null && _change$path !== void 0 && _change$path.length) {
     let [it, key] = _traversalObject(arr[index], change.path);
 
     switch (change.kind) {
@@ -420,7 +351,7 @@ function _applyArrayChange(arr, index, change) {
 }
 
 function isIDiffNode(source) {
-  return (source != null ? source : false) && validKinds.includes(source.kind);
+  return (source !== null && source !== void 0 ? source : false) && validKinds.includes(source.kind);
 }
 function applyChange(target, source, change) {
   if (typeof change === 'undefined' && isIDiffNode(source)) {
@@ -464,7 +395,6 @@ function applyChange(target, source, change) {
 
 function revertArrayChange(arr, index, change) {
   if (change.path && change.path.length) {
-    // the structure of the object at the index has changed...
     let it = arr[index],
         i,
         u = change.path.length - 1;
@@ -474,54 +404,37 @@ function revertArrayChange(arr, index, change) {
     }
 
     switch (change.kind) {
-      case "A"
-      /* DiffArray */
-      :
+      case "A":
         revertArrayChange(it[change.path[i]], change.index, change.item);
         break;
 
-      case "D"
-      /* DiffDeleted */
-      :
+      case "D":
         it[change.path[i]] = change.lhs;
         break;
 
-      case "E"
-      /* DiffEdit */
-      :
+      case "E":
         it[change.path[i]] = change.lhs;
         break;
 
-      case "N"
-      /* DiffNew */
-      :
+      case "N":
         delete it[change.path[i]];
         break;
     }
   } else {
-    // the array item is different...
     switch (change.kind) {
-      case "A"
-      /* DiffArray */
-      :
+      case "A":
         revertArrayChange(arr[index], change.index, change.item);
         break;
 
-      case "D"
-      /* DiffDeleted */
-      :
+      case "D":
         arr[index] = change.lhs;
         break;
 
-      case "E"
-      /* DiffEdit */
-      :
+      case "E":
         arr[index] = change.lhs;
         break;
 
-      case "N"
-      /* DiffNew */
-      :
+      case "N":
         arr = arrayRemove(arr, index);
         break;
     }
@@ -531,7 +444,7 @@ function revertArrayChange(arr, index, change) {
 }
 
 function revertChange(target, source, change) {
-  if (target && source && change != null && change.kind) {
+  if (target && source && change !== null && change !== void 0 && change.kind) {
     let it = target,
         i,
         u;
@@ -546,32 +459,19 @@ function revertChange(target, source, change) {
     }
 
     switch (change.kind) {
-      case "A"
-      /* DiffArray */
-      :
-        // Array was modified...
-        // it will be an array...
+      case "A":
         revertArrayChange(it[change.path[i]], change.index, change.item);
         break;
 
-      case "D"
-      /* DiffDeleted */
-      :
-        // Item was deleted...
+      case "D":
         it[change.path[i]] = change.lhs;
         break;
 
-      case "E"
-      /* DiffEdit */
-      :
-        // Item was edited...
+      case "E":
         it[change.path[i]] = change.lhs;
         break;
 
-      case "N"
-      /* DiffNew */
-      :
-        // Item is new...
+      case "N":
         delete it[change.path[i]];
         break;
     }
@@ -609,6 +509,22 @@ function revertDiffChange(lhs, differences) {
   }
 }
 
-export default deepDiff;
-export { Diff, DiffArray, DiffDeleted, DiffEdit, DiffNew, EnumKinds, applyChange, applyDiff, applyDiffChange, deepDiff, deepDiff as diff, getOrderIndependentHash, isIDiffNode, observableDiff, orderIndependentDiff, orderIndependentObservableDiff, revertChange, revertDiffChange };
-//# sourceMappingURL=index.esm.js.map
+exports.Diff = Diff;
+exports.DiffArray = DiffArray;
+exports.DiffDeleted = DiffDeleted;
+exports.DiffEdit = DiffEdit;
+exports.DiffNew = DiffNew;
+exports.applyChange = applyChange;
+exports.applyDiff = applyDiff;
+exports.applyDiffChange = applyDiffChange;
+exports.deepDiff = deepDiff;
+exports["default"] = deepDiff;
+exports.diff = deepDiff;
+exports.getOrderIndependentHash = getOrderIndependentHash;
+exports.isIDiffNode = isIDiffNode;
+exports.observableDiff = observableDiff;
+exports.orderIndependentDiff = orderIndependentDiff;
+exports.orderIndependentObservableDiff = orderIndependentObservableDiff;
+exports.revertChange = revertChange;
+exports.revertDiffChange = revertDiffChange;
+//# sourceMappingURL=index.cjs.development.cjs.map

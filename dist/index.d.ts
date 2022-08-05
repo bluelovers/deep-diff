@@ -71,12 +71,12 @@ export declare class DiffArray<LHS, RHS = LHS> extends Diff {
  * also object key order independent (easier since they can be alphabetized)
  */
 export declare function getOrderIndependentHash(object: unknown): number;
-export declare function observableDiff<LHS, RHS = LHS>(lhs: LHS, rhs: RHS, observer?: Observer<LHS, RHS>, prefilter?: PreFilter<LHS, RHS>, orderIndependent?: boolean): IDiffNode<unknown, unknown>[];
+export declare function observableDiff<LHS, RHS = LHS>(lhs: LHS, rhs: RHS, observer?: Observer<LHS, RHS>, prefilter?: PreFilter<LHS, RHS>, orderIndependent?: boolean): IDiffNode<LHS, RHS>[];
 export declare function orderIndependentObservableDiff(lhs: any, rhs: any, changes: any, prefilter: any, path: any, key: any, stack: any): void;
 export declare function deepDiff<LHS, RHS = LHS>(lhs: LHS, rhs: RHS, prefilter?: PreFilter<LHS, RHS>, accum?: IDiffNode<LHS, RHS>[]): IDiffNode<LHS, RHS>[];
-export declare function orderIndependentDiff<LHS, RHS = LHS>(lhs: LHS, rhs: RHS, prefilter?: PreFilter<LHS, RHS>, accum?: IDiffNode<LHS, RHS>[]): IDiffNode<unknown, unknown>[];
+export declare function orderIndependentDiff<LHS, RHS = LHS>(lhs: LHS, rhs: RHS, prefilter?: PreFilter<LHS, RHS>, accum?: IDiffNode<LHS, RHS>[]): IDiffNode<LHS, RHS>[];
 export declare function isIDiffNode<T extends IDiffNode>(source?: unknown): source is T;
-export declare function applyChange<LHS>(target: LHS, source: any, change: IDiffNode<LHS, any>): void;
+export declare function applyChange<LHS>(target: LHS, source: any, change?: IDiffNode<LHS, any>): void;
 export declare function revertChange<LHS>(target: LHS, source: any, change: IDiffNode): void;
 export declare function applyDiff<LHS, RHS = LHS>(target: LHS, source: RHS, filter?: Filter<LHS, RHS>): LHS;
 export declare function applyDiffChange<RHS>(lhs: unknown, differences: IDiffNode<any, RHS>[]): RHS;

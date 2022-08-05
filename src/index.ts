@@ -250,7 +250,7 @@ function _deepDiff(lhs, rhs, changes: IDiffNode[], prefilter, path: IPaths, key,
 				}
 				if (prefilter.normalize)
 				{
-					var alt = prefilter.normalize(currentPath, key, lhs, rhs);
+					const alt = prefilter.normalize(currentPath, key, lhs, rhs);
 					if (alt)
 					{
 						lhs = alt[0];
@@ -341,8 +341,8 @@ function _deepDiff(lhs, rhs, changes: IDiffNode[], prefilter, path: IPaths, key,
 			}
 			else
 			{
-				var akeys = Object.keys(lhs).concat(Object.getOwnPropertySymbols(lhs));
-				var pkeys = Object.keys(rhs).concat(Object.getOwnPropertySymbols(rhs));
+				const akeys = Object.keys(lhs).concat(Object.getOwnPropertySymbols(lhs));
+				const pkeys = Object.keys(rhs).concat(Object.getOwnPropertySymbols(rhs));
 				for (i = 0; i < akeys.length; ++i)
 				{
 					k = akeys[i];
@@ -670,4 +670,3 @@ export function revertDiffChange<LHS>(lhs: unknown, differences: IDiffNode<LHS, 
 export { deepDiff as diff }
 
 export default deepDiff;
-

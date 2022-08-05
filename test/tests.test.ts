@@ -2,7 +2,7 @@
 
 import * as deep from '../src/';
 import { getOrderIndependentHash } from '../src/';
-import { IDiffNode } from '../dist/index';
+import { IDiffNode } from '../src/index';
 
 describe('deep-diff', () =>
 {
@@ -1112,5 +1112,3 @@ describe('Diff-ing symbol-based keys should work', () =>
 	expect(res).toMatchSnapshot();
 
 });
-
-

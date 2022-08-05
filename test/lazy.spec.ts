@@ -1,4 +1,4 @@
-import { applyDiff, applyDiffChange, diff, revertDiffChange } from '../dist/index';
+import { applyDiff, applyDiffChange, diff, revertDiffChange } from '../src/index';
 import { cloneDeep } from 'lodash';
 import { inspect } from 'util';
 
